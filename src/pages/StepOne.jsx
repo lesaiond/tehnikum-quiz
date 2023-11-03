@@ -25,7 +25,9 @@ const StepOne = () => {
             <h2>1. Занимательный вопрос</h2>
             <Input26
               isRequired
+              inputType="text"
               inputPlaceholder="Ваш ответ"
+              inputName="answer"
               errorMessage="Введите номер в правильном формате например"
             />
             {/* <label className="input-wrapper">
