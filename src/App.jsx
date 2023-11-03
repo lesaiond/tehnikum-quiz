@@ -1,14 +1,13 @@
 import React from "react";
-import Welcome from "./pages/Welcome";
+// import Welcome from "./pages/Welcome";
+import StepOne from './pages/StepOne';
 import "./styles/main.css";
-import { Button } from "./components/Button";
-
 
 const App = () => {
   return (
     <div className="App">
-      <Button />
-      <Welcome />
+      {/* <Welcome /> */}
+      <StepOne />
     </div>
   );
 };

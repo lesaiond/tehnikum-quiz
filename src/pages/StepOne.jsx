@@ -1,4 +1,6 @@
 import React from "react";
+import { Input26 } from "../dz/inut25x";
+import { Button26 } from "../dz/button26";
 
 const StepOne = () => {
   return (
@@ -21,7 +23,12 @@ const StepOne = () => {
           </div>
           <div className="question">
             <h2>1. Занимательный вопрос</h2>
-            <label className="input-wrapper">
+            <Input26
+              isRequired
+              inputPlaceholder="Ваш ответ"
+              errorMessage="Введите номер в правильном формате например"
+            />
+            {/* <label className="input-wrapper">
               <input
                 required
                 type="text"
@@ -31,10 +38,11 @@ const StepOne = () => {
               <span id="error-message">
                 Введите номер в правильном формате например
               </span>
-            </label>
-            <button type="button" disabled id="next-btn">
+            </label> */}
+            {/* <button type="button" disabled id="next-btn">
               Далее
-            </button>
+            </button> */}
+            <Button26 buttonType="type" buttonText="Далее" id="next-btn" isDissabled="disabled" />
           </div>
         </div>
       </div>
