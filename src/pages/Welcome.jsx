@@ -1,15 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Heading } from "../components/heading";
 import { Button } from "../components/Button";
 import { Input } from "../components/input";
 
 const Welcome = () => {
   const [nameValue, setNameValue] = useState("");
-  const [phoneValue, setPhoneValue] = userState("");
+  const [phoneValue, setPhoneValue] = useState("");
 
-  useEffect() => {
-    
-  }, [nameValue, phoneValue]
+  const [nameError, setNameError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+
+  const clickHandler = () => {
+    if (!nameValue) {
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }
+    if (!phoneValue) {
+      setPhoneError(true);
+    } else {
+      setPhoneError(false);
+    }
+  };
 
   return (
     <div className="container">
@@ -21,15 +33,17 @@ const Welcome = () => {
           />
           <form className="welcome__form">
             <Input
-              onChange={setNameValue}
+              hasError={nameError}
               value={nameValue}
-              id="username"
+              onChange={setNameValue}
+              id="usernam e"
               isRequired
               inputLabel="Ваше имя"
               inputPlaceholder="Ваш ответ"
               errorMessage="Введите ваше имя"
             />
             <Input
+              hasError={phoneError}
               value={phoneValue}
               onChange={setPhoneValue}
               id="phone"
@@ -38,7 +52,7 @@ const Welcome = () => {
               inputPlaceholder="+998 9- --- -- -- "
               errorMessage="Введите номер в правильном формате<"
             />
-            <Button buttonType="button" buttonText="Далее" />
+            <Button buttonType="button" buttonText="Далее" onClick={clickHandler} />
           </form>
         </div>
       </div>
