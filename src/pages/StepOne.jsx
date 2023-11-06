@@ -1,8 +1,19 @@
-import React from "react";
-import { Input26 } from "../dz/inut25x";
-import { Button26 } from "../dz/button26";
+import React, { useState } from "react";
+// import { Input26 } from "../dz/inut25x";
+import { Button } from "../components/Button";
+import { Input } from "../components/input";
 
 const StepOne = () => {
+  const [inputValue, setInputValue] = useState("");
+  const [inputError, setInputError] = useState(false);
+
+  const clickHandler = () => {
+    if (!inputValue) {
+      setInputError(true);
+    } else {
+      setInputError(false);
+    }
+  };
   return (
     <div className="container">
       <div className="wrapper">
@@ -23,28 +34,23 @@ const StepOne = () => {
           </div>
           <div className="question">
             <h2>1. Занимательный вопрос</h2>
-            <Input26
-              isRequired
+            <Input
               inputType="text"
-              inputPlaceholder="Ваш ответ"
               inputName="answer"
+              hasError={inputError}
+              value={inputValue}
+              onChange={setInputValue}
+              isRequired
+              inputLabel="Ваш номер"
+              inputPlaceholder="Ваш ответ"
               errorMessage="Введите номер в правильном формате например"
             />
-            {/* <label className="input-wrapper">
-              <input
-                required
-                type="text"
-                name="answer"
-                placeholder="Ваш ответ"
-              />
-              <span id="error-message">
-                Введите номер в правильном формате например
-              </span>
-            </label> */}
-            {/* <button type="button" disabled id="next-btn">
-              Далее
-            </button> */}
-            <Button26 buttonType="type" buttonText="Далее" id="next-btn" isDissabled="disabled" />
+            <Button
+              id="next-btn"
+              buttonType="button"
+              buttonText="Далее"
+              onClick={clickHandler}
+            />
           </div>
         </div>
       </div>
