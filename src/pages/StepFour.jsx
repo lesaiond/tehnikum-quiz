@@ -1,6 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import { AnswerItem } from "./AnswerItem";
+import { Button } from "../components/Button";
 
 const StepFour = () => {
+  const [checkedAnswer, setCheckedAnswer] = useState();
+
+  const variants = [
+    {
+      id: "variant-1",
+      answerLabel: "1",
+    },
+    {
+      id: "variant-2",
+      answerLabel: "2",
+    },
+    {
+      id: "variant-3",
+      answerLabel: "3",
+    },
+    {
+      id: "variant-4",
+      answerLabel: "4",
+    },
+    {
+      id: "variant-5",
+      answerLabel: "5",
+    },
+  ];
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -22,30 +49,22 @@ const StepFour = () => {
           <div className="question">
             <h2>4. Занимательный вопрос</h2>
             <ul className="level-variants">
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-1" />
-                <label htmlFor="variant-1">1</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-2" />
-                <label htmlFor="variant-2">2</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-3" />
-                <label htmlFor="variant-3">3</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-4" />
-                <label htmlFor="variant-4">4</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-5" />
-                <label htmlFor="variant-5">5</label>
-              </li>
+              {variants.map((elem) => (
+                <AnswerItem
+                  key={elem.id}
+                  id={elem.id}
+                  answerLabel={elem.answerLabel}
+                  onChange={() => setCheckedAnswer(elem.id)}
+                  isChecked={elem.id === checkedAnswer}
+                />
+              ))}
             </ul>
-            <button type="button" id="next-btn" disabled>
-              Далее
-            </button>
+            <Button
+              id="next-btn"
+              buttonType="button"
+              buttonText="Далее"
+              // onClick={clickHandler}
+            />
           </div>
         </div>
       </div>
