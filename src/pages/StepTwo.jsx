@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { ProgressBar } from "./ProgressBar";
-import { AnswerItem } from "./AnswerItem";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ProgressBar } from "../components/ProgressBar";
+import { AnswerItem } from "../components/AnswerItem";
+import { LinkButton } from "../components/LinkButton";
 
 const StepTwo = () => {
-  const [checkedAnswer, setCheckedAnswer] = useState();
-
   const variants = [
     {
       id: "variant-1",
@@ -24,15 +24,27 @@ const StepTwo = () => {
     },
   ];
 
-  useEffect(() => {
-    console.log("Answer:", checkedAnswer);
-  }, [checkedAnswer]);
+  const navigate = useNavigate();
+  const [selectedRadio, setSelectedRadio] = useState("");
+  const [error, setError] = useState("");
+
+  const handleRadioChange = (event) => {
+    setSelectedRadio(event.target.value);
+  };
+
+  const handleCheckRadio = () => {
+    if (!selectedRadio) {
+      setError("Пожалуйста, выберите радио");
+    } else {
+      navigate("/step-three");
+    }
+  };
 
   return (
     <div className="container">
       <div className="wrapper">
         <div className="variants-quiz">
-          <ProgressBar />
+          <ProgressBar currentStep={2} />
           <div className="question">
             <h2>1. Занимательный вопрос</h2>
             <ul className="variants">
@@ -41,14 +53,20 @@ const StepTwo = () => {
                   key={elem.id}
                   id={elem.id}
                   answerLabel={elem.answerLabel}
-                  onChange={() => setCheckedAnswer(elem.id)}
-                  isChecked={elem.id === checkedAnswer}
+                  checked={selectedRadio === elem.id}
+                  onChange={handleRadioChange}
+                  c
                 />
               ))}
+              {error && <span id="error-message" style={{ color: 'red' }}>{error}</span>}
             </ul>
-            <button type="button" disabled id="next-btn">
-              Далее
-            </button>
+            <LinkButton
+              id="next-btn"
+              buttonType="button"
+              buttonText="Далее"
+              isDisabled={false}
+              onClick={handleCheckRadio}
+            />
           </div>
         </div>
       </div>
