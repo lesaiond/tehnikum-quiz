@@ -2,13 +2,13 @@ import React, { useState, useEffect, useMemo } from "react";
 import { ThemeContext, themes } from "./themeContext";
 
 export const ThemeProvider = ({ children }) => {
-  const { themeValue, setThemeValue } = useState(themes.light);
+  const [themeValue, setThemeValue] = useState(themes.light);
 
   useEffect(() => {
-    const persisTheme = JSON.parse(localStorage.getItem('currentTheme'));
+    const persistedTheme = JSON.parse(localStorage.getItem("currentTheme"));
 
-    if (persisTheme) {
-      setThemeValue(persisTheme);
+    if (persistedTheme) {
+      setThemeValue(persistedTheme);
     }
   }, [themeValue]);
 
@@ -17,10 +17,10 @@ export const ThemeProvider = ({ children }) => {
   };
 
   const contextValue = useMemo(() => {
-    return ({
+    return {
       theme: themeValue,
       toggleTheme,
-    });
+    };
   }, [themeValue, toggleTheme]);
 
   return (

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ProgressBar } from "../components/ProgressBar";
 import { AnswerItem } from "../components/AnswerItem";
+// import { MainContext } from "../test/MyContext";
 import { LinkButton } from "../components/LinkButton";
 
 const StepTwo = () => {
@@ -27,6 +28,7 @@ const StepTwo = () => {
   const navigate = useNavigate();
   const [selectedRadio, setSelectedRadio] = useState("");
   const [error, setError] = useState("");
+  // const textName = useContext(MainContext);
 
   const handleRadioChange = (event) => {
     setSelectedRadio(event.target.value);

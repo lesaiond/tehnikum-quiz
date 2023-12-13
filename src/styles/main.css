@@ -46,6 +46,18 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: ease-in-out .3s;
+  background: #f3f2ff;
+}
+
+.container._dark {
+  background: #22222a;
+  color: #f3f2ff;
+}
+
+._dark .input-wrapper input {
+  color: #f3f2ff;
+  background: #22222a;
 }
 
 .wrapper {
@@ -99,6 +111,7 @@ input {
   width: 100%;
   padding: 12px 0;
   border-bottom: 1px solid #aeb4c2;
+  transition: ease-in-out .3s;
 }
 input::-moz-placeholder {
   color: #5a6684;
